@@ -8,7 +8,7 @@ class ObjectBuffer
 {
 public:
     T& object() { return *reinterpret_cast<T*>(&d_buffer); }
-    const T& object() const { return *reinterpret_cast<T*>(&d_buffer); }
+    const T& object() const { return *reinterpret_cast<const T*>(&d_buffer); }
     void* buffer() { return d_buffer; }
     const void* buffer() const { return d_buffer; }
 private:

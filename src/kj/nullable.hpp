@@ -87,6 +87,7 @@ Nullable<T>& Nullable<T>::operator=(Nullable<T>&& other)
     else
         makeValue(std::move(other.value()));
     other.makeNull();
+    return *this;
 }
 
 template<typename T>

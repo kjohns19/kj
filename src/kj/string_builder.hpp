@@ -15,7 +15,7 @@ public:
     StringBuilder& operator<<(std::ios_base& (*func)(std::ios_base&));
     operator std::string() const { return d_stream.str(); }
 private:
-    std::stringstream d_stream;
+    std::ostringstream d_stream;
 };
 
 template<typename T>
