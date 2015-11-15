@@ -1,0 +1,19 @@
+# CMake files
+/CMakeCache.txt
+/CMakeFiles/
+/Makefile
+/cmake_install.cmake
+
+# Executables
+/kj
+
+# Vim swap files
+*.swp
+*.swo
+
+# Object files
+*.o
+
+# Libraries
+*.a
+*.so
