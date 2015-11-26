@@ -13,10 +13,10 @@ public:
     Semaphore();
     Semaphore(int count);
 
-    bool trywait();
     void wait();
     template<typename Rep, typename Period>
     bool wait(const std::chrono::duration<Rep, Period>& rel_time);
+    bool tryWait();
 
     void post();
 

@@ -7,7 +7,13 @@ Semaphore::Semaphore()
 Semaphore::Semaphore(int count)
 : d_count(count) {}
 
-bool Semaphore::trywait()
+void Semaphore::wait()
+{
+    std::unique_lock<std::mutex> guard(d_mutex);
+    d_cond.wait(guard, [this]() { return d_count > 0; });
+    d_count--;
+}
+bool Semaphore::tryWait()
 {
     std::lock_guard<std::mutex> guard(d_mutex);
     if (d_count > 0)
@@ -16,12 +22,6 @@ bool Semaphore::trywait()
         return true;
     }
     return false;
-}
-void Semaphore::wait()
-{
-    std::unique_lock<std::mutex> guard(d_mutex);
-    d_cond.wait(guard, [this]() { return d_count > 0; });
-    d_count--;
 }
 void Semaphore::post()
 {
