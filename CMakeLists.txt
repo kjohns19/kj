@@ -10,3 +10,7 @@ project(kj)
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
 
 add_library(kj STATIC ${SRC_FILES})
+
+install(TARGETS kj ARCHIVE DESTINATION lib)
+install(DIRECTORY src/ DESTINATION include FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY src/ DESTINATION include FILES_MATCHING PATTERN "*.hpp")
