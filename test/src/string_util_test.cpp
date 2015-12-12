@@ -112,9 +112,3 @@ TEST(StringUtilTestReplace, ReplaceAllWorks)
     kj::StringUtil::replaceAll("tion", "le", &str);
     EXPECT_EQ("Locale locale locale", str);
 }
-
-int main(int argc, char* argv[])
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

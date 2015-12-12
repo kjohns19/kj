@@ -39,9 +39,3 @@ TEST(NullableTest, IsMoveable)
     ASSERT_TRUE(!value2.isNull());
     EXPECT_EQ(10, value2.value());
 }
-
-int main(int argc, char* argv[])
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
