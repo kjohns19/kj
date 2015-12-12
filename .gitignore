@@ -6,7 +6,7 @@ cmake_install.cmake
 
 # Executables
 /kj
-/test/tests
+/test/kjtests
 
 # Vim swap files
 *.swp
@@ -18,3 +18,6 @@ cmake_install.cmake
 # Libraries
 *.a
 *.so
+
+# Install manifest
+/install_manifest.txt
