@@ -1,7 +1,7 @@
 #ifndef INCLUDED_KJ_LOCATION
 #define INCLUDED_KJ_LOCATION
 
-#include <iostream>
+#include <ostream>
 
 namespace kj {
 
