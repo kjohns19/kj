@@ -1,0 +1,6 @@
+{
+    "localkj": {
+        "link_dirs": [ "." ],
+        "link_libs": [ "kj" ]
+    }
+}

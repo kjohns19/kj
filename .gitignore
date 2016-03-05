@@ -6,7 +6,7 @@ cmake_install.cmake
 
 # Executables
 /kj
-/test/kjtests
+/kjtests
 
 # Vim swap files
 *.swp

@@ -1,0 +1,24 @@
+{
+    "projectname": "kj",
+    "builddir": "build.dir",
+    "flags": "-std=c++14 -g -Wall -Werror",
+    "targets": [
+        {
+            "name": "kj",
+            "type": "staticlib",
+            "srcs": [ "src/*.cpp" ],
+            "include_dirs": [ "src" ],
+            "libraries": [ "gtkmm" ],
+            "install_to": [ "lib" ],
+            "install_includes": [ "src/*.h", "src/*.hpp" ]
+        },
+        {
+            "name": "kjtests",
+            "type": "executable",
+            "srcs": [ "test/*.cpp" ],
+            "include_dirs": [ "test", "src" ],
+            "libraries": [ "kj", "gtest" ]
+        }
+    ]
+}
+
