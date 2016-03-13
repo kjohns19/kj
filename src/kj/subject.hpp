@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_SUBJECT
-#define INCLUDED_KJ_SUBJECT
+#ifndef INCLUDED_KJ_SUBJECT_HPP
+#define INCLUDED_KJ_SUBJECT_HPP
 
 #include <kj/observer.hpp>
 #include <algorithm>
@@ -43,4 +43,4 @@ void Subject<T>::notifyObservers(T object)
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_SUBJECT
+#endif //INCLUDED_KJ_SUBJECT_HPP

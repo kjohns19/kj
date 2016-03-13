@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_OBSERVER
-#define INCLUDED_KJ_OBSERVER
+#ifndef INCLUDED_KJ_OBSERVER_HPP
+#define INCLUDED_KJ_OBSERVER_HPP
 
 namespace kj {
 
@@ -13,4 +13,4 @@ private:
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_OBSERVER
+#endif //INCLUDED_KJ_OBSERVER_HPP

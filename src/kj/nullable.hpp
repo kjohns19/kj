@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_NULLABLE
-#define INCLUDED_KJ_NULLABLE
+#ifndef INCLUDED_KJ_NULLABLE_HPP
+#define INCLUDED_KJ_NULLABLE_HPP
 
 #include <kj/object_buffer.hpp>
 #include <utility>
@@ -119,4 +119,4 @@ void Nullable<T>::makeNull()
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_NULLABLE
+#endif //INCLUDED_KJ_NULLABLE_HPP

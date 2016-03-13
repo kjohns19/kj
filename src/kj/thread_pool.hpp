@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_THREAD_POOL
-#define INCLUDED_KJ_THREAD_POOL
+#ifndef INCLUDED_KJ_THREAD_POOL_HPP
+#define INCLUDED_KJ_THREAD_POOL_HPP
 
 #include <kj/queue.hpp>
 #include <kj/caller.hpp>
@@ -40,4 +40,4 @@ std::future<typename std::result_of<Func()>::type> ThreadPool::push(Func func)
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_THREAD_POOL
+#endif //INCLUDED_KJ_THREAD_POOL_HPP

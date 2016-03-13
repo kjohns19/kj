@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_QUEUE
-#define INCLUDED_KJ_QUEUE
+#ifndef INCLUDED_KJ_QUEUE_HPP
+#define INCLUDED_KJ_QUEUE_HPP
 
 #include <kj/semaphore.hpp>
 #include <chrono>
@@ -81,4 +81,4 @@ void Queue<T>::doRead(T* value)
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_QUEUE
+#endif //INCLUDED_KJ_QUEUE_HPP

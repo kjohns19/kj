@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_STRING_UTIL
-#define INCLUDED_KJ_STRING_UTIL
+#ifndef INCLUDED_KJ_STRING_UTIL_HPP
+#define INCLUDED_KJ_STRING_UTIL_HPP
 
 #include <string>
 
@@ -30,4 +30,4 @@ std::string  replacedAll(const std::string& from, const std::string& to, std::st
 } // close namespace StringUtil
 } // close namespace kj
 
-#endif //INCLUDED_KJ_STRING_UTIL
+#endif //INCLUDED_KJ_STRING_UTIL_HPP

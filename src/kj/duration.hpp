@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_DURATION
-#define INCLUDED_KJ_DURATION
+#ifndef INCLUDED_KJ_DURATION_HPP
+#define INCLUDED_KJ_DURATION_HPP
 
 namespace kj {
 
@@ -24,4 +24,4 @@ private:
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_DURATION
+#endif //INCLUDED_KJ_DURATION_HPP

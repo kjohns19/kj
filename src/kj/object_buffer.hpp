@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_OBJECT_BUFFER
-#define INCLUDED_KJ_OBJECT_BUFFER
+#ifndef INCLUDED_KJ_OBJECT_BUFFER_HPP
+#define INCLUDED_KJ_OBJECT_BUFFER_HPP
 
 namespace kj {
 
@@ -17,4 +17,4 @@ private:
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_OBJECT_BUFFER
+#endif //INCLUDED_KJ_OBJECT_BUFFER_HPP

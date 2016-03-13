@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_VECTOR
-#define INCLUDED_KJ_VECTOR
+#ifndef INCLUDED_KJ_VECTOR_HPP
+#define INCLUDED_KJ_VECTOR_HPP
 
 #include <ostream>
 #include <cmath>
@@ -205,4 +205,4 @@ using Vector2d = Vector2<double>;
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_VECTOR
+#endif //INCLUDED_KJ_VECTOR_HPP

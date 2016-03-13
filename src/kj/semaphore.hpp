@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_SEMAPHORE
-#define INCLUDED_KJ_SEMAPHORE
+#ifndef INCLUDED_KJ_SEMAPHORE_HPP
+#define INCLUDED_KJ_SEMAPHORE_HPP
 
 #include <chrono>
 #include <condition_variable>
@@ -39,4 +39,4 @@ bool Semaphore::wait(const std::chrono::duration<Rep, Period>& rel_time)
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_SEMAPHORE
+#endif //INCLUDED_KJ_SEMAPHORE_HPP

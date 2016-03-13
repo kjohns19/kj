@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_LOCATION
-#define INCLUDED_KJ_LOCATION
+#ifndef INCLUDED_KJ_LOCATION_HPP
+#define INCLUDED_KJ_LOCATION_HPP
 
 #include <ostream>
 
@@ -80,4 +80,4 @@ inline bool operator>=(const Location& lhs, const Location& rhs)
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_LOCATION
+#endif //INCLUDED_KJ_LOCATION_HPP

@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_TIMER
-#define INCLUDED_KJ_TIMER
+#ifndef INCLUDED_KJ_TIMER_HPP
+#define INCLUDED_KJ_TIMER_HPP
 
 #include <kj/duration.hpp>
 #include <chrono>
@@ -25,4 +25,4 @@ private:
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_TIMER
+#endif //INCLUDED_KJ_TIMER_HPP

@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_CALLER
-#define INCLUDED_KJ_CALLER
+#ifndef INCLUDED_KJ_CALLER_HPP
+#define INCLUDED_KJ_CALLER_HPP
 
 #include <memory>
 #include <utility>
@@ -49,4 +49,4 @@ private:
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_CALLER
+#endif //INCLUDED_KJ_CALLER_HPP

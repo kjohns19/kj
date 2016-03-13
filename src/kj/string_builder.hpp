@@ -1,5 +1,5 @@
-#ifndef INCLUDED_STRING_BUILDER
-#define INCLUDED_STRING_BUILDER
+#ifndef INCLUDED_STRING_BUILDER_HPP
+#define INCLUDED_STRING_BUILDER_HPP
 
 #include <sstream>
 
@@ -45,4 +45,4 @@ inline StringBuilder& StringBuilder::operator<<(
 
 } // close namespace kj
 
-#endif //INCLUDED_STRING_BUILDER
+#endif //INCLUDED_STRING_BUILDER_HPP

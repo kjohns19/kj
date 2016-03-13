@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_FINALLY
-#define INCLUDED_KJ_FINALLY
+#ifndef INCLUDED_KJ_FINALLY_HPP
+#define INCLUDED_KJ_FINALLY_HPP
 
 #include <utility>
 
@@ -31,4 +31,4 @@ Finally<F> finally(F&& f) { return Finally<F>(std::forward<F>(f)); }
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_FINALLY
+#endif //INCLUDED_KJ_FINALLY_HPP

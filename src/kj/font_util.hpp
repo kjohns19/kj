@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_FONT_UTIL
-#define INCLUDED_KJ_FONT_UTIL
+#ifndef INCLUDED_KJ_FONT_UTIL_HPP
+#define INCLUDED_KJ_FONT_UTIL_HPP
 
 #include <string>
 #include <vector>
@@ -18,4 +18,4 @@ bool getFontStyles(const std::string& family, std::vector<std::string>* styles);
 } // close namespace FontUtil
 } // close namespace kj
 
-#endif //INCLUDED_KJ_FONT_UTIL
+#endif //INCLUDED_KJ_FONT_UTIL_HPP

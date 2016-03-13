@@ -1,5 +1,5 @@
-#ifndef INCLUDED_KJ_RANDOM
-#define INCLUDED_KJ_RANDOM
+#ifndef INCLUDED_KJ_RANDOM_HPP
+#define INCLUDED_KJ_RANDOM_HPP
 
 #include <limits>
 #include <type_traits>
@@ -70,4 +70,4 @@ private:
 
 } // close namespace kj
 
-#endif //INCLUDED_KJ_RANDOM
+#endif //INCLUDED_KJ_RANDOM_HPP
