@@ -10,11 +10,18 @@ class StringBuilder
 public:
     template<typename T>
     StringBuilder& operator<<(T&& value);
-    StringBuilder& operator<<(std::ostream& (*func)(std::ostream&));
-    StringBuilder& operator<<(std::basic_ios<char>& (*func)(std::basic_ios<char>&));
-    StringBuilder& operator<<(std::ios_base& (*func)(std::ios_base&));
+    template<typename Stream>
+    StringBuilder& operator<<(Stream& (*func)(Stream&));
     operator std::string() const { return d_stream.str(); }
+    template<typename... Args>
+    static std::string build(Args&&... args);
 private:
+    static void doBuild(StringBuilder& sb);
+    template<typename T, typename... Rest>
+    static void doBuild(StringBuilder& sb, T&& arg, Rest&&... rest);
+    template<typename Stream, typename... Rest>
+    static void doBuild(StringBuilder& sb, Stream& (*func)(Stream&), Rest&&... rest);
+
     std::ostringstream d_stream;
 };
 
@@ -24,23 +31,38 @@ StringBuilder& StringBuilder::operator<<(T&& value)
     d_stream << std::forward<T>(value);
     return *this;
 }
-inline StringBuilder& StringBuilder::operator<<(
-        std::ostream& (*func)(std::ostream&))
+template<typename Stream>
+StringBuilder& StringBuilder::operator<<(Stream& (*func)(Stream&))
 {
     d_stream << func;
     return *this;
 }
-inline StringBuilder& StringBuilder::operator<<(
-        std::basic_ios<char>& (*func)(std::basic_ios<char>&))
+
+template<typename... Args>
+std::string StringBuilder::build(Args&&... args)
 {
-    d_stream << func;
-    return *this;
+    StringBuilder sb;
+    doBuild(sb, std::forward<Args>(args)...);
+    return sb;
 }
-inline StringBuilder& StringBuilder::operator<<(
-        std::ios_base& (*func)(std::ios_base&))
+
+void StringBuilder::doBuild(StringBuilder& sb)
 {
-    d_stream << func;
-    return *this;
+    //Do nothing
+}
+
+template<typename T, typename... Rest>
+void StringBuilder::doBuild(StringBuilder& sb, T&& arg, Rest&&... rest)
+{
+    sb << std::forward<T>(arg);
+    doBuild(sb, std::forward<Rest>(rest)...);
+}
+
+template<typename Stream, typename... Rest>
+void StringBuilder::doBuild(StringBuilder& sb, Stream& (*func)(Stream&), Rest&&... rest)
+{
+    sb << func;
+    doBuild(sb, std::forward<Rest>(rest)...);
 }
 
 } // close namespace kj

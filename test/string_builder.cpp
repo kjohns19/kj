@@ -18,3 +18,9 @@ TEST(StringBuilderTest, WorksWithModifiers)
     std::string str = kj::StringBuilder() << 16 << " " << std::hex << 16;
     EXPECT_EQ("16 10", str);
 }
+
+TEST(StringBuilderTest, BuildWorks)
+{
+    std::string str = kj::StringBuilder::build("hello", "world", std::hex, 10);
+    EXPECT_EQ("helloworlda", str);
+}
