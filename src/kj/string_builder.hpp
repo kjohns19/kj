@@ -46,7 +46,7 @@ std::string StringBuilder::build(Args&&... args)
     return sb;
 }
 
-void StringBuilder::doBuild(StringBuilder& sb)
+inline void StringBuilder::doBuild(StringBuilder& sb)
 {
     //Do nothing
 }
