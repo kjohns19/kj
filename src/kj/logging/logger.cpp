@@ -33,9 +33,9 @@ const char* Logger::levelString(int level)
         case Logger::DEBUG:
             return "DEBUG";
         case Logger::INFO:
-            return "INFO ";
+            return "INFO";
         case Logger::WARN:
-            return "WARN ";
+            return "WARN";
         case Logger::ERROR:
             return "ERROR";
         case Logger::FATAL:
