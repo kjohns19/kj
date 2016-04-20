@@ -4,7 +4,11 @@
 
 namespace kj {
 
-LoggerFormatter LoggerHandler::s_defaultFormatter;
+namespace {
+
+LoggerFormatter s_defaultFormatter;
+
+} // close anonymous namespace
 
 LoggerHandler::LoggerHandler()
 : d_formatter(&s_defaultFormatter)

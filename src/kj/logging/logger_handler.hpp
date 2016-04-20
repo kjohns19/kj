@@ -24,8 +24,6 @@ public:
 private:
     virtual void log(const std::string& message) = 0;
 
-    static LoggerFormatter s_defaultFormatter;
-
     const LoggerFormatter* d_formatter;
     int d_minLevel;
 };
