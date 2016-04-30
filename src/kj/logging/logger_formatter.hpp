@@ -4,6 +4,7 @@
 #include <ctime>
 #include <string>
 #include <vector>
+#include <ostream>
 #include <functional>
 
 namespace kj {
@@ -14,12 +15,13 @@ public:
     LoggerFormatter();
     LoggerFormatter(const std::string& formatString);
 
-    std::string format(int level, std::time_t time, const std::string& message) const;
-private:
-    std::vector<std::function<std::string(
+    std::string format(
             int level,
+            const char* file, const char* func, int line,
             std::time_t time,
-            const std::string& message)>> d_formats;
+            const std::string& message) const;
+private:
+    std::vector<std::function<void(std::ostream&, const void*)>> d_formats;
 };
 
 } // close namespace kj

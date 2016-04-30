@@ -12,15 +12,25 @@ LoggerFormatter s_defaultFormatter;
 
 LoggerHandler::LoggerHandler()
 : d_formatter(&s_defaultFormatter)
-, d_minLevel(Logger::INFO) {}
+, d_minLevel(Logger::INFO)
+, d_maxLevel(Logger::FATAL) {}
 LoggerHandler::LoggerHandler(int minLevel)
 : d_formatter(&s_defaultFormatter)
-, d_minLevel(minLevel) {}
+, d_minLevel(minLevel)
+, d_maxLevel(Logger::FATAL) {}
+LoggerHandler::LoggerHandler(int minLevel, int maxLevel)
+: d_formatter(&s_defaultFormatter)
+, d_minLevel(minLevel)
+, d_maxLevel(maxLevel) {}
 
-void LoggerHandler::log(int level, std::time_t time, const std::string& message)
+void LoggerHandler::log(
+        int level,
+        const char* file, const char* func, int line,
+        std::time_t time,
+        const std::string& message)
 {
-    if (level >= d_minLevel)
-        log(d_formatter->format(level, time, message));
+    if (level >= d_minLevel && level <= d_maxLevel)
+        log(d_formatter->format(level, file, func, line, time, message));
 }
 
 int LoggerHandler::minLevel() const
@@ -30,6 +40,15 @@ int LoggerHandler::minLevel() const
 void LoggerHandler::minLevel(int level)
 {
     d_minLevel = level;
+}
+
+int LoggerHandler::maxLevel() const
+{
+    return d_maxLevel;
+}
+void LoggerHandler::maxLevel(int level)
+{
+    d_maxLevel = level;
 }
 
 const LoggerFormatter& LoggerHandler::formatter() const

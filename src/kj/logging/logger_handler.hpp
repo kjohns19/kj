@@ -13,11 +13,19 @@ class LoggerHandler
 public:
     LoggerHandler();
     LoggerHandler(int minLevel);
+    LoggerHandler(int minLevel, int maxLevel);
 
-    void log(int level, std::time_t time, const std::string& message);
+    void log(
+            int level,
+            const char* file, const char* func, int line,
+            std::time_t time,
+            const std::string& message);
 
     int minLevel() const;
     void minLevel(int level);
+
+    int maxLevel() const;
+    void maxLevel(int level);
 
     const LoggerFormatter& formatter() const;
     void formatter(const LoggerFormatter& formatter);
@@ -26,6 +34,7 @@ private:
 
     const LoggerFormatter* d_formatter;
     int d_minLevel;
+    int d_maxLevel;
 };
 
 } // close namespace kj

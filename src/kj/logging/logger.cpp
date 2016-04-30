@@ -24,7 +24,8 @@ void Logger::logger(Logger& logger)
 }
 
 Logger::Logger()
-: d_minLevel(INFO) {}
+: d_minLevel(INFO)
+, d_maxLevel(FATAL) {}
 
 const char* Logger::levelString(int level)
 {
@@ -32,6 +33,8 @@ const char* Logger::levelString(int level)
     {
         case Logger::DEBUG:
             return "DEBUG";
+        case Logger::TRACE:
+            return "TRACE";
         case Logger::INFO:
             return "INFO";
         case Logger::WARN:
@@ -63,6 +66,15 @@ int Logger::minLevel() const
 void Logger::minLevel(int level)
 {
     d_minLevel = level;
+}
+
+int Logger::maxLevel() const
+{
+    return d_maxLevel;
+}
+void Logger::maxLevel(int level)
+{
+    d_maxLevel = level;
 }
 
 } // close namespace kj

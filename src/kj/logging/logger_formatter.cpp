@@ -9,14 +9,24 @@ namespace kj {
 
 namespace {
 
+struct Args
+{
+    int level;
+    const char* file;
+    const char* func;
+    int line;
+    std::time_t time;
+    const std::string& message;
+};
+
 struct StringFormat
 {
     StringFormat(const std::string& string)
     : d_string(string) {}
 
-    std::string operator()(int level, std::time_t time, const std::string& message) const
+    void operator()(std::ostream& stream, const void* args) const
     {
-        return d_string;
+        stream << d_string;
     }
 
     std::string d_string;
@@ -27,29 +37,20 @@ struct TimeFormat
     TimeFormat(const std::string& format)
     : d_format(format) {}
 
-    std::string operator()(int level, std::time_t time, const std::string& message) const
+    void operator()(std::ostream& stream, const void* args) const
     {
         std::tm tm;
-        localtime_r(&time, &tm);
-        return kj::StringBuilder() << std::put_time(&tm, d_format.c_str());
+        localtime_r(&static_cast<const Args*>(args)->time, &tm);
+        stream << std::put_time(&tm, d_format.c_str());
     }
 
     std::string d_format;
 };
 
-std::string levelFormat(int level, std::time_t time, const std::string& message)
-{
-    return kj::StringBuilder() << std::setw(5) << kj::Logger::levelString(level);
-}
-std::string messageFormat(int level, std::time_t time, const std::string& message)
-{
-    return message;
-}
-
 }
 
 LoggerFormatter::LoggerFormatter()
-: LoggerFormatter("[$T: $L]: $M") {}
+: LoggerFormatter("[$T:$L] $M") {}
 LoggerFormatter::LoggerFormatter(const std::string& formatString)
 {
     size_t start = 0;
@@ -57,9 +58,7 @@ LoggerFormatter::LoggerFormatter(const std::string& formatString)
     {
         size_t pos = formatString.find('$', start);
         if (pos == std::string::npos || pos == formatString.length()-1)
-        {
             d_formats.push_back(StringFormat(formatString.substr(start)));
-        }
         else
         {
             if (pos != start)
@@ -72,11 +71,30 @@ LoggerFormatter::LoggerFormatter(const std::string& formatString)
                     d_formats.push_back(TimeFormat("%T"));
                     break;
                 case 'L':
-                    d_formats.push_back(levelFormat);
+                    d_formats.push_back([](std::ostream& stream, const void* args) {
+                        int level = static_cast<const Args*>(args)->level;
+                        stream << std::setw(5) << kj::Logger::levelString(level);
+                    });
                     break;
                 case 'M':
-                    d_formats.push_back(messageFormat);
+                    d_formats.push_back([](std::ostream& stream, const void* args) {
+                        stream << static_cast<const Args*>(args)->message;
+                    });
                     break;
+                case 'f':
+                    d_formats.push_back([](std::ostream& stream, const void* args) {
+                        stream << static_cast<const Args*>(args)->file;
+                    });
+                    break;
+                case 'F':
+                    d_formats.push_back([](std::ostream& stream, const void* args) {
+                        stream << static_cast<const Args*>(args)->func;
+                    });
+                    break;
+                case 'l':
+                    d_formats.push_back([](std::ostream& stream, const void* args) {
+                        stream << static_cast<const Args*>(args)->line;
+                    });
                 default:
                     d_formats.push_back(StringFormat(std::string(c, 1)));
                     break;
@@ -90,14 +108,17 @@ LoggerFormatter::LoggerFormatter(const std::string& formatString)
 }
 
 std::string LoggerFormatter::format(
-        int level,
-        std::time_t time,
-        const std::string& message) const
+            int level,
+            const char* file, const char* func, int line,
+            std::time_t time,
+            const std::string& message) const
 {
     std::ostringstream stream;
 
+    Args args{level, file, func, line, time, message};
+
     for(auto& format: d_formats)
-        stream << format(level, time, message);
+        format(stream, &args);
     stream << "\n";
 
     return stream.str();

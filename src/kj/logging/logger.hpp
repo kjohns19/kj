@@ -17,33 +17,37 @@ public:
     static void logger(Logger& logger);
     static const char* levelString(int level);
 
-    enum Level { DEBUG, INFO, WARN, ERROR, FATAL };
+    enum Level { DEBUG, TRACE, INFO, WARN, ERROR, FATAL };
 
     Logger();
 
     template<typename... Args>
-    void log(int level, Args&&... args);
+    void log(int level, const char* file, const char* func, int line, Args&&... args);
 
     void addHandler(LoggerHandler& handler);
     void removeHandler(LoggerHandler& handler);
 
     int minLevel() const;
     void minLevel(int level);
+
+    int maxLevel() const;
+    void maxLevel(int level);
 private:
     std::vector<LoggerHandler*> d_handlers;
     int d_minLevel;
+    int d_maxLevel;
 };
 
 template<typename... Args>
-void Logger::log(int level, Args&&... args)
+void Logger::log(int level, const char* file, const char* func, int line, Args&&... args)
 {
-    if (level >= d_minLevel)
+    if (level >= d_minLevel && level <= d_maxLevel)
     {
         auto now = std::chrono::system_clock::now();
         std::time_t now_t = std::chrono::system_clock::to_time_t(now);
         std::string message = kj::StringBuilder::build(std::forward<Args>(args)...);
         for(auto handler: d_handlers)
-            handler->log(level, now_t, message);
+            handler->log(level, file, func, line, now_t, message);
     }
 }
 
